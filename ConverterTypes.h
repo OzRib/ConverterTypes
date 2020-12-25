@@ -11,7 +11,7 @@
 
 #include <math.h>
 
-int StringToInt(char* str){
+int StringToInt(char* str, int len){
 	/*Description of variables
 	* cs = Possible character value in a string
 	* cn = Character numeric founded in the string
@@ -27,9 +27,9 @@ int StringToInt(char* str){
 	}
 	//Filter for character numerics
 	//Obs: the middle term is the lenght of the string
-	for(int x=0;x<10; x++){
+	for(int x=0;x<len; x++){
 		for(int y=0; y<10; y++){
-			if(str[x]==cs[y]){
+			if(str[x]==(y+48)){//48 = '0' in ASCII
 				cn[dp]=y;
 				dp++;
 			}
@@ -46,4 +46,10 @@ int StringToInt(char* str){
 		result += summ;
 	}
 	return result;
+}
+
+float StringToFloat(char* str){
+	const char cs[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	float result = 0;
+	int df, db = 0;
 }
