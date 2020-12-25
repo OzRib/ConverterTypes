@@ -18,7 +18,6 @@ int StringToInt(char* str, int len){
 	* dp = Number of decimal points
 	*/
 	//Declaration of variables
-	const char cs[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 	char cn[10];
 	int dp, result = 0;
 	//Cleaner from numeric vetor
@@ -48,6 +47,7 @@ int StringToInt(char* str, int len){
 	return result;
 }
 
+//Prototype
 float StringToFloat(char* str){
 	const char cs[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 	float result = 0;
