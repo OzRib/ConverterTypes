@@ -11,7 +11,7 @@
 
 #include <math.h>
 
-int StringToInt(char* str, int len){
+int StringToInt(char* str, unsigned int len){
 	/*Description of variables
 	* cs = Possible character value in a string
 	* cn = Character numeric founded in the string
@@ -48,8 +48,40 @@ int StringToInt(char* str, int len){
 }
 
 //Prototype
-float StringToFloat(char* str){
-	const char cs[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+float StringToFloat(char* str, unsigned int len){
 	float result = 0;
-	int df, db = 0;
+	bool point = false;
+	int da, db = 0;
+	int na[10], nb[10];
+	for(int x=0;x<10;x++){
+		na[x], nb[x] = 0;
+	}
+	for(int x=0;x<len; x++){
+		for(int y=0; y<10; y++){
+			if('.' == str[x]){
+				point = true;
+			}else if((y+48)==str[x]){
+				if(point){
+					nb[db]=y;
+					db++;
+				}else{
+					na[da]=y;
+					da++;
+				}
+			}
+		}
+	}
+	printf("String: %s\nda: %d\n", str, da);
+	printf("db: %d\n", db);
+	for(int x=0;x<da;x++){
+		int summ = (int)(pow(10, x))*(int)(na[da-x-1]);
+		printf("Some da: %d\n", summ);
+		result += summ;
+	}
+	for(int x=0;x<db;x++){
+		float summ = (float)(nb[db-x-1])/(float)(pow(10,x+1));
+		printf("Some db: %3.2f\n", summ);
+		result += summ;
+	}
+	return result;
 }
