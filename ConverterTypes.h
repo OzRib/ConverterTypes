@@ -11,6 +11,7 @@
 
 #include <math.h>
 
+//Converter String to Int
 int StringToInt(char* str, unsigned int len){
 	/*Description of variables
 	* cs = Possible character value in a string
@@ -47,7 +48,7 @@ int StringToInt(char* str, unsigned int len){
 	return result;
 }
 
-//Prototype
+//Converter String to Float
 float StringToFloat(char* str, unsigned int len){
 	float result = 0;
 	bool point = false;
@@ -71,16 +72,12 @@ float StringToFloat(char* str, unsigned int len){
 			}
 		}
 	}
-	printf("String: %s\nda: %d\n", str, da);
-	printf("db: %d\n", db);
 	for(int x=0;x<da;x++){
 		int summ = (int)(pow(10, x))*(int)(na[da-x-1]);
-		printf("Some da: %d\n", summ);
 		result += summ;
 	}
 	for(int x=0;x<db;x++){
 		float summ = (float)(nb[db-x-1])/(float)(pow(10,x+1));
-		printf("Some db: %3.2f\n", summ);
 		result += summ;
 	}
 	return result;
