@@ -1,5 +1,9 @@
 ###################################
 
+ConverterTypes	KEYWORD1
+
+###################################
+
 StringToInt	KEYWORD2
 StringToFloat	KEYWORD2
 
