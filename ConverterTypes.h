@@ -13,10 +13,11 @@
 #define ConverterTypes_h
 
 #include <math.h>
+#include <Arduino.h>
 
 //Converter String to Int
-int StringToInt(char* str, unsigned int len);
+int StringToInt(String str, unsigned int len);
 
 //Converter String to Float
-float StringToFloat(char* str, unsigned int len);
+float StringToFloat(String str, unsigned int len);
 #endif

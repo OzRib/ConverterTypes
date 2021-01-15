@@ -10,9 +10,10 @@
 */
 
 #include <math.h>
+#include <Arduino.h>
 #include "ConverterTypes.h"
 
-int StringToInt(char* str, unsigned int len){
+int StringToInt(String str, unsigned int len){
 	 /* Description of variables
 	 * str = Received string
 	 * len = length of the string
@@ -25,12 +26,15 @@ int StringToInt(char* str, unsigned int len){
 	//Filter for character numerics
 	for(int x=0;x<len;x++){
 		for(int y=0; y<10;y++){
-			if(str[x]==(y+48)){//48 = '0' in ASCII
+			if(str[x]=='.'){
+				goto Endfor1;
+			}else if(str[x]==(y+48)){//48 = '0' in ASCII
 				cn[dp]=y;
 				dp++;
 			}
 		}
 	}
+	Endfor1:
 	//mounting the number
 	for(int x=0;x<dp;x++){
 		/*Matematical principle of convertion
@@ -43,7 +47,7 @@ int StringToInt(char* str, unsigned int len){
 	return result;
 }
 
-float StringToFloat(char* str, unsigned int len){
+float StringToFloat(String str, unsigned int len){
 	/*Description of variables
 	 * da = Number of decimal point after "."
 	 * db = Number of decimal point before "."
