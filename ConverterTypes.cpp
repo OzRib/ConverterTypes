@@ -13,22 +13,22 @@
 #include <Arduino.h>
 #include "ConverterTypes.h"
 
-int StringToInt(String str, unsigned int len){
+int StringToInt(String str){
 	 /* Description of variables
 	 * str = Received string
-	 * len = length of the string
 	 * cn = Character numeric founded in the string
 	 * dp = Number of decimal points
 	 */
 	//Declaration of variables
-	char cn[10] = {0,0,0,0,0,0,0,0,0,0};
-	int dp, result = 0;
+	char *cn = (char *) malloc(str.length()*sizeof(char)); 
+	int dp = 0; 
+	int result = 0;
 	//Filter for character numerics
-	for(int x=0;x<len;x++){
+	for(int x=0;x<=str.length();x++){
 		for(int y=0; y<10;y++){
-			if(str[x]=='.'){
+			if('.'==str[x]){
 				goto Endfor1;
-			}else if(str[x]==(y+48)){//48 = '0' in ASCII
+			}else if((y+48)==str[x]){//48 = '0' in ASCII
 				cn[dp]=y;
 				dp++;
 			}
@@ -44,10 +44,11 @@ int StringToInt(String str, unsigned int len){
 		int summ = (int)(pow(10, x)*(int)(cn[dp-x-1]));
 		result += summ;
 	}
+	free(cn);
 	return result;
 }
 
-float StringToFloat(String str, unsigned int len){
+float StringToFloat(String str){
 	/*Description of variables
 	 * da = Number of decimal point after "."
 	 * db = Number of decimal point before "."
@@ -57,15 +58,17 @@ float StringToFloat(String str, unsigned int len){
 	//Declaration of variables
 	float result = 0;
 	bool point = false;
-	int da, db = 0;
-	int na[10], nb[10] = {0,0,0,0,0,0,0,0,0,0};
+	int da = 0;
+	int db = 0;
+	char *na = (char *) malloc(str.length()*sizeof(char));
+	char *nb = (char *) malloc(str.length()*sizeof(char));
 	//Filter for character numerics
-	for(int x=0;x<len;x++){
+	for(int x=0;x<=str.length();x++){
 		for(int y=0;y<10;y++){
-			if('.' == str[x]){//Check if the char is the point
+			if('.'==str[x]){//Check if the char is the point
 				point = true;
 			}else if((y+48)==str[x]){//48 = '0' in ASCII
-				if(point){//If the number passed of point..
+				if(true==point){//If the number passed of point..
 					nb[db]=y;
 					db++;
 				}else{//Else
@@ -92,5 +95,7 @@ float StringToFloat(String str, unsigned int len){
 		float summ = (float)(nb[db-x-1])/(float)(pow(10,x+1));
 		result += summ;
 	}
+	free(na);
+	free(nb);
 	return result;
 }

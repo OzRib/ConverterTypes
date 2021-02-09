@@ -16,8 +16,8 @@
 #include <Arduino.h>
 
 //Converter String to Int
-int StringToInt(String str, unsigned int len);
+int StringToInt(String str);
 
 //Converter String to Float
-float StringToFloat(String str, unsigned int len);
+float StringToFloat(String str);
 #endif
